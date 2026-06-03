@@ -472,7 +472,7 @@ function getYtId(url) {
 /* ═══════════════════════════════════════════════════════════
    YOUTUBE — YOUR OWN YT-DLP API
    GET /info?url=   → video metadata + format list
-   GET /stream?url=&itag=  → proxied stream (for download)
+   GET /download?url=&itag=  → proxied stream (for download)
    GET /download?url=&itag= → direct download trigger
    ═══════════════════════════════════════════════════════════ */
 
@@ -482,8 +482,8 @@ function getYtId(url) {
  */
 async function ytdlpInfo(url) {
   const r = await fetch(
-    `${YTDLP_API}/info?url=${encodeURIComponent(url)}`,
-    { signal: AbortSignal.timeout(20000) }
+    `${YTDLP_API}/info?url=${encodeURIComponent(url, { mode: "cors" })}`,
+    { method: "GET", mode: "cors" }
   );
   if (!r.ok) {
     const txt = await r.text().catch(()=>"");
@@ -535,7 +535,7 @@ async function tikwmFetch(url) {
   ];
   for (const ep of endpoints) {
     try {
-      const r = await fetch(ep, {signal:AbortSignal.timeout(15000)});
+      const r = await fetch(ep, { method: "GET", mode: "cors" });
       if (!r.ok) continue;
       const d = await r.json();
       if (d.code===0 && d.data) return d.data;
@@ -561,7 +561,7 @@ async function cobaltCommunity(url, quality, audioOnly) {
         method: "POST",
         headers: {"Content-Type":"application/json","Accept":"application/json"},
         body,
-        signal: AbortSignal.timeout(14000),
+        
       });
       let d; try { d = await r.json(); } catch { continue; }
       if (d.status === "error") {
@@ -686,7 +686,7 @@ async function apiGetInfo(url) {
 
   /* TikTok */
   if (platform === "tiktok") {
-    const data = await tikwmFetch(url);
+    const data = await tikwmFetch(url, { mode: "cors" });
     return {
       platform:"tiktok",
       title: data.title || "TikTok Video",
@@ -737,7 +737,7 @@ async function apiDownload(url, quality) {
     if (!itag) throw new Error("Could not pick a stream format. Try a different quality.");
 
     // Use /stream endpoint for proxied playback/download
-    const streamUrl = `${YTDLP_API}/stream?url=${encodeURIComponent(url)}&itag=${encodeURIComponent(itag)}`;
+    const streamUrl = `${YTDLP_API}/download?url=${encodeURIComponent(url)}&itag=${encodeURIComponent(itag)}`;
     return { status:"stream", url: streamUrl };
   }
 
@@ -762,7 +762,7 @@ async function apiDownload(url, quality) {
     ];
     for (const p of proxies) {
       try {
-        const r=await fetch(p,{headers:{Accept:"application/json"},signal:AbortSignal.timeout(18000)});
+        const r=await fetch(p,{headers:{Accept:"application/json"},});
         if(!r.ok) continue;
         const d=await r.json();
         const dlUrl=d.url||d.downloadLink||d.download_url||d.link;
