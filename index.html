@@ -3,339 +3,183 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>VidSnap - Premium Video Downloader</title>
+<title>VidSnap - Video Downloader</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;900&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --blue: #5078ff;
-    --purple: #a050ff;
-    --pink: #ff50a0;
-    --bg: #050510;
-    --glass: rgba(255,255,255,0.04);
-    --border: rgba(255,255,255,0.08);
-    --text: #e8e8f0;
-    --muted: #6666aa;
+    --blue: #5078ff; --purple: #a050ff; --pink: #ff50a0;
+    --glass: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.08);
+    --text: #e8e8f0; --muted: #6666aa;
   }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Space Mono', monospace;
-    color: var(--text);
-    background: #050510;
-    min-height: 100vh;
-    overflow-x: hidden;
+    color: var(--text); background: #050510; min-height: 100vh; overflow-x: hidden;
   }
-
-  /* Animated BG */
   .animated-bg {
     position: fixed; inset: 0; z-index: -1;
     background: linear-gradient(-45deg, #050505, #0d0d1a, #0a1628, #0c1f3d);
-    background-size: 400% 400%;
-    animation: bgAnim 15s ease infinite;
+    background-size: 400% 400%; animation: bgAnim 15s ease infinite;
   }
   @keyframes bgAnim {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
   }
-
-  /* Noise overlay */
-  .noise {
-    position: fixed; inset: 0; z-index: -1; opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  }
-
-  .container { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
-
-  /* Glass */
-  .glass {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-  }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+  .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
 
   /* Header */
-  header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 52px;
-    animation: fadeDown 0.5s ease;
-  }
-  .logo {
-    font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 900;
-    background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    letter-spacing: -1px;
-  }
-  .logo-tag {
-    font-size: 10px; color: var(--blue); margin-left: 8px;
-    letter-spacing: 3px; font-family: 'Space Mono', monospace;
-    -webkit-text-fill-color: var(--blue);
-  }
-  .nav { display: flex; gap: 20px; font-size: 12px; color: var(--muted); }
-  .nav a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav a:hover { color: var(--text); }
+  header { display:flex; justify-content:space-between; align-items:center; margin-bottom:48px; animation:fadeDown .5s ease; }
+  .logo { font-family:'Syne',sans-serif; font-size:28px; font-weight:900; background:linear-gradient(135deg,var(--blue),var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-1px; }
+  .logo-tag { font-size:10px; color:var(--blue); margin-left:8px; letter-spacing:3px; -webkit-text-fill-color:var(--blue); }
+  nav a { color:var(--muted); text-decoration:none; margin-left:20px; font-size:12px; transition:color .2s; }
+  nav a:hover { color:var(--text); }
 
   /* Hero */
-  .hero {
-    text-align: center; margin-bottom: 40px;
-    animation: fadeUp 0.6s ease;
-  }
-  .badge {
-    display: inline-block; font-size: 10px; letter-spacing: 4px;
-    color: var(--blue); border: 1px solid rgba(80,120,255,0.3);
-    padding: 5px 18px; border-radius: 20px; margin-bottom: 22px;
-    text-transform: uppercase;
-  }
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(34px, 7vw, 60px);
-    font-weight: 900; line-height: 1.05; margin-bottom: 16px; letter-spacing: -2px;
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+  .hero { text-align:center; margin-bottom:36px; animation:fadeUp .6s ease; }
+  .badge { display:inline-block; font-size:10px; letter-spacing:4px; color:var(--blue); border:1px solid rgba(80,120,255,.3); padding:5px 18px; border-radius:20px; margin-bottom:20px; text-transform:uppercase; }
+  h1 { font-family:'Syne',sans-serif; font-size:clamp(32px,7vw,58px); font-weight:900; line-height:1.05; margin-bottom:14px; letter-spacing:-2px; }
+  .gradient-text { background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .subtitle { color:var(--muted); font-size:15px; margin-bottom:32px; }
 
-  /* Input Area */
-  .input-wrap {
-    display: flex; gap: 10px; max-width: 640px;
-    margin: 0 auto; flex-wrap: wrap;
-  }
-  .url-box {
-    flex: 1; position: relative; min-width: 200px;
-  }
-  .url-input {
-    width: 100%; padding: 14px 50px 14px 18px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; color: var(--text);
-    font-size: 14px; font-family: 'Space Mono', monospace;
-    outline: none; transition: border 0.2s;
-  }
-  .url-input:focus { border-color: rgba(80,120,255,0.5); }
-  .url-input::placeholder { color: var(--muted); }
-  .paste-btn {
-    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; color: var(--blue);
-    font-size: 18px; cursor: pointer; padding: 4px;
-    transition: transform 0.2s;
-  }
-  .paste-btn:hover { transform: translateY(-50%) scale(1.2); }
-  .fetch-btn {
-    padding: 14px 28px;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    border: none; border-radius: 12px; color: #fff;
-    font-weight: 700; font-size: 14px; font-family: 'Space Mono', monospace;
-    cursor: pointer; letter-spacing: 0.5px;
-    box-shadow: 0 0 20px rgba(80,120,255,0.4), 0 0 40px rgba(80,120,255,0.15);
-    transition: all 0.2s;
-  }
-  .fetch-btn:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(80,120,255,0.6); }
-  .fetch-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  /* Input */
+  .input-wrap { display:flex; gap:10px; max-width:660px; margin:0 auto; flex-wrap:wrap; }
+  .url-box { flex:1; position:relative; min-width:200px; }
+  .url-input { width:100%; padding:14px 50px 14px 18px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:12px; color:var(--text); font-size:14px; font-family:'Space Mono',monospace; outline:none; transition:border .2s; }
+  .url-input:focus { border-color:rgba(80,120,255,.5); }
+  .url-input::placeholder { color:var(--muted); }
+  .paste-btn { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--blue); font-size:18px; cursor:pointer; transition:transform .2s; }
+  .paste-btn:hover { transform:translateY(-50%) scale(1.2); }
+  .fetch-btn { padding:14px 28px; background:linear-gradient(135deg,var(--blue),var(--purple)); border:none; border-radius:12px; color:#fff; font-weight:700; font-size:14px; font-family:'Space Mono',monospace; cursor:pointer; box-shadow:0 0 24px rgba(80,120,255,.4); transition:all .2s; }
+  .fetch-btn:hover { transform:translateY(-1px); box-shadow:0 0 36px rgba(80,120,255,.6); }
+  .fetch-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
 
-  /* Error */
-  .error-box {
-    max-width: 640px; margin: 16px auto 0;
-    padding: 12px 20px;
-    background: rgba(255,60,60,0.12);
-    border: 1px solid rgba(255,60,60,0.3);
-    border-radius: 10px; font-size: 13px; color: #ff9999;
-    display: none;
-  }
+  /* Quality row */
+  .quality-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
+  .quality-label { font-size:11px; color:var(--muted); letter-spacing:3px; text-transform:uppercase; }
+  select.q-select { padding:8px 14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:8px; color:var(--text); font-family:'Space Mono',monospace; font-size:13px; outline:none; cursor:pointer; }
+  select.q-select option { background:#0d0d1a; }
 
-  /* Result Card */
-  .result-card {
-    border-radius: 16px; padding: 24px;
-    margin-bottom: 32px;
-    display: none;
-    animation: fadeUp 0.4s ease;
-  }
-  .result-inner { display: flex; gap: 24px; flex-wrap: wrap; }
-  .thumb-wrap {
-    position: relative; flex: 0 0 280px;
-    border-radius: 12px; overflow: hidden;
-    background: #111; align-self: flex-start;
-  }
-  .thumb-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-  .thumb-duration {
-    position: absolute; bottom: 8px; left: 8px;
-    background: rgba(0,0,0,0.75); padding: 3px 8px;
-    border-radius: 6px; font-size: 12px;
-  }
-  .platform-badge {
-    position: absolute; top: 8px; right: 8px;
-    padding: 3px 10px; border-radius: 6px;
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-  }
-  .result-info { flex: 1; min-width: 200px; display: flex; flex-direction: column; justify-content: space-between; }
-  .result-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
-  .result-meta { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+  /* Error / Info */
+  .msg-box { max-width:660px; margin:14px auto 0; padding:12px 18px; border-radius:10px; font-size:13px; display:none; }
+  .msg-box.error { background:rgba(255,60,60,.12); border:1px solid rgba(255,60,60,.3); color:#ff9999; }
+  .msg-box.info  { background:rgba(80,120,255,.12); border:1px solid rgba(80,120,255,.3); color:#88aaff; }
 
-  /* Quality buttons */
-  .quality-label { font-size: 11px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-  .quality-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-  .q-btn {
-    padding: 7px 14px; border-radius: 8px; font-size: 12px;
-    font-family: 'Space Mono', monospace;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
-    color: #aaaacc; cursor: pointer; transition: all 0.15s;
-  }
-  .q-btn:hover { border-color: rgba(80,120,255,0.4); color: #8090ee; }
-  .q-btn.active { border-color: var(--blue); background: rgba(80,120,255,0.2); color: #7090ff; }
-  .q-btn.audio.active { border-color: var(--purple); background: rgba(160,80,255,0.2); color: #c080ff; }
+  /* Result card */
+  .result-card { border-radius:16px; padding:22px; margin-bottom:32px; display:none; animation:fadeUp .4s ease; }
+  .result-inner { display:flex; gap:22px; flex-wrap:wrap; }
+  .thumb-wrap { position:relative; flex:0 0 260px; border-radius:12px; overflow:hidden; background:#111; align-self:flex-start; }
+  .thumb-wrap img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+  .thumb-duration { position:absolute; bottom:8px; left:8px; background:rgba(0,0,0,.75); padding:3px 8px; border-radius:6px; font-size:12px; }
+  .platform-badge { position:absolute; top:8px; right:8px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700; text-transform:uppercase; }
+  .result-info { flex:1; min-width:200px; display:flex; flex-direction:column; justify-content:space-between; gap:16px; }
+  .result-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; line-height:1.4; }
+  .result-meta { font-size:12px; color:var(--muted); margin-top:6px; }
 
   /* Progress */
-  .progress-wrap { background: rgba(255,255,255,0.08); border-radius: 4px; height: 6px; overflow: hidden; margin-bottom: 10px; display: none; }
-  .progress-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--purple)); width: 0%; transition: width 0.1s; border-radius: 4px; }
+  .progress-wrap { background:rgba(255,255,255,.08); border-radius:4px; height:6px; overflow:hidden; margin-bottom:10px; display:none; }
+  .progress-bar { height:100%; background:linear-gradient(90deg,var(--blue),var(--purple)); width:0%; transition:width .08s; border-radius:4px; }
 
-  /* Download button */
-  .dl-btn {
-    width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    border: none; border-radius: 10px; color: #fff;
-    font-weight: 700; font-size: 15px; font-family: 'Space Mono', monospace;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(80,120,255,0.4);
-    transition: all 0.2s;
-  }
-  .dl-btn:hover { transform: translateY(-1px); }
-  .dl-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  /* Download btn */
+  .dl-btn { width:100%; padding:14px; background:linear-gradient(135deg,var(--blue),var(--purple)); border:none; border-radius:10px; color:#fff; font-weight:700; font-size:15px; font-family:'Space Mono',monospace; cursor:pointer; box-shadow:0 0 20px rgba(80,120,255,.35); transition:all .2s; }
+  .dl-btn:hover { transform:translateY(-1px); }
+  .dl-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+  .dl-btn.success { background:linear-gradient(135deg,#20c05a,#10a080); box-shadow:0 0 20px rgba(32,192,90,.35); }
 
   /* Sections */
-  section { margin-bottom: 56px; }
-  .section-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 28px; letter-spacing: -0.5px; }
+  section { margin-bottom:52px; }
+  .section-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:900; text-align:center; margin-bottom:26px; letter-spacing:-.5px; }
 
   /* Platforms */
-  .platforms-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-  .platform-card {
-    border-radius: 14px; padding: 24px 32px; text-align: center; min-width: 130px;
-    transition: transform 0.2s;
-  }
-  .platform-card:hover { transform: scale(1.05); }
-  .platform-icon { font-size: 32px; margin-bottom: 10px; }
-  .platform-name { font-weight: 700; font-size: 14px; }
+  .platforms-grid { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+  .platform-card { border-radius:14px; padding:22px 30px; text-align:center; min-width:120px; transition:transform .2s; }
+  .platform-card:hover { transform:scale(1.05); }
+  .platform-icon { font-size:30px; margin-bottom:10px; }
+  .platform-name { font-weight:700; font-size:13px; }
 
   /* Features */
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-  .feature-card { border-radius: 14px; padding: 22px; }
-  .feature-icon { font-size: 28px; margin-bottom: 12px; }
-  .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 6px; font-size: 15px; }
-  .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .features-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(195px,1fr)); gap:14px; }
+  .feature-card { border-radius:14px; padding:20px; }
+  .feature-icon { font-size:26px; margin-bottom:10px; }
+  .feature-title { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:6px; font-size:14px; }
+  .feature-desc { font-size:12px; color:var(--muted); line-height:1.6; }
 
   /* Recent */
-  .recent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-  .recent-card { border-radius: 10px; padding: 14px 16px; transition: transform 0.2s; }
-  .recent-card:hover { transform: scale(1.02); }
-  .recent-title { font-size: 13px; line-height: 1.4; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .recent-time { font-size: 11px; color: #555577; }
+  .recent-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; }
+  .recent-card { border-radius:10px; padding:14px; transition:transform .2s; cursor:pointer; }
+  .recent-card:hover { transform:scale(1.02); }
+  .recent-title { font-size:13px; line-height:1.4; margin-bottom:5px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .recent-time { font-size:11px; color:#555577; }
 
   /* FAQ */
-  .faq-list { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
-  .faq-item { border-radius: 12px; overflow: hidden; }
-  .faq-q {
-    width: 100%; padding: 15px 18px;
-    background: none; border: none; color: var(--text);
-    text-align: left; font-size: 14px; font-weight: 700;
-    font-family: 'Space Mono', monospace;
-    display: flex; justify-content: space-between; align-items: center;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .faq-q:hover { background: rgba(255,255,255,0.03); }
-  .faq-arrow { transition: transform 0.25s; font-size: 16px; }
-  .faq-a {
-    padding: 0 18px; font-size: 13px; color: var(--muted);
-    line-height: 1.7; max-height: 0; overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-  }
-  .faq-item.open .faq-arrow { transform: rotate(180deg); }
-  .faq-item.open .faq-a { max-height: 200px; padding: 0 18px 15px; }
+  .faq-list { max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+  .faq-item { border-radius:12px; overflow:hidden; }
+  .faq-q { width:100%; padding:14px 18px; background:none; border:none; color:var(--text); text-align:left; font-size:13px; font-weight:700; font-family:'Space Mono',monospace; display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
+  .faq-q:hover { background:rgba(255,255,255,.03); }
+  .faq-arrow { transition:transform .25s; }
+  .faq-item.open .faq-arrow { transform:rotate(180deg); }
+  .faq-a { padding:0 18px; font-size:13px; color:var(--muted); line-height:1.7; max-height:0; overflow:hidden; transition:max-height .3s ease,padding .3s ease; }
+  .faq-item.open .faq-a { max-height:200px; padding:0 18px 14px; }
 
   /* Footer */
-  footer {
-    text-align: center; padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    color: #444466; font-size: 12px; margin-bottom: 24px;
-  }
-  footer p + p { margin-top: 6px; font-size: 11px; }
+  footer { text-align:center; padding-top:22px; border-top:1px solid rgba(255,255,255,.06); color:#444466; font-size:12px; margin-bottom:24px; }
+  footer p+p { margin-top:5px; font-size:11px; }
 
-  /* Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  .spinner {
-    display: inline-block; width: 14px; height: 14px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: #fff; border-radius: 50%;
-    animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px;
-  }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .spinner { display:inline-block; width:13px; height:13px; border:2px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; vertical-align:middle; margin-right:8px; }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #080808; }
-  ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 3px; }
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:#080808; }
+  ::-webkit-scrollbar-thumb { background:#2a2a4a; border-radius:3px; }
 
-  @media (max-width: 600px) {
-    .thumb-wrap { flex: 0 0 100%; }
-    .fetch-btn { width: 100%; }
-    .input-wrap { flex-direction: column; }
-    .url-box { width: 100%; }
+  @media(max-width:600px) {
+    .thumb-wrap { flex:0 0 100%; }
+    .fetch-btn,.input-wrap { width:100%; }
+    .input-wrap { flex-direction:column; }
   }
 </style>
 </head>
 <body>
 <div class="animated-bg"></div>
-<div class="noise"></div>
 
 <div class="container">
 
-  <!-- Header -->
   <header>
     <div>
       <span class="logo">VidSnap</span>
-      <span class="logo-tag">v2.0</span>
+      <span class="logo-tag">v3.0</span>
     </div>
-    <nav class="nav">
+    <nav>
       <a href="#platforms">Platforms</a>
-      <a href="#features">Features</a>
       <a href="#faq">FAQ</a>
     </nav>
   </header>
 
-  <!-- Hero -->
   <div class="hero">
-    <div class="badge">⚡ Premium Video Downloader</div>
+    <div class="badge">⚡ Real Video Downloader</div>
     <h1>Download Any Video<br><span class="gradient-text">Instantly.</span></h1>
-    <p class="subtitle">YouTube • Instagram • Terabox — one link, any quality.</p>
+    <p class="subtitle">YouTube • Instagram • Twitter/X • TikTok • Reddit & more</p>
 
     <div class="input-wrap">
       <div class="url-box">
         <input type="text" id="urlInput" class="url-input" placeholder="Paste video URL here..." />
-        <button class="paste-btn" onclick="pasteUrl()" title="Paste from clipboard">📋</button>
+        <button class="paste-btn" onclick="pasteUrl()" title="Paste">📋</button>
       </div>
       <button class="fetch-btn" id="fetchBtn" onclick="fetchVideo()">🔍 Fetch</button>
     </div>
-    <div class="error-box" id="errorBox"></div>
+
+    <div class="msg-box error" id="errorBox"></div>
+    <div class="msg-box info"  id="infoBox"></div>
   </div>
 
   <!-- Result -->
   <div class="result-card glass" id="resultCard">
     <div class="result-inner">
       <div class="thumb-wrap">
-        <img id="resultThumb" src="" alt="thumbnail" />
+        <img id="resultThumb" src="" alt="thumbnail" onerror="this.style.display='none'" />
         <span class="thumb-duration" id="resultDuration"></span>
         <span class="platform-badge" id="platformBadge"></span>
       </div>
@@ -343,10 +187,18 @@
         <div>
           <div class="result-title" id="resultTitle"></div>
           <div class="result-meta" id="resultMeta"></div>
-          <span class="quality-label">Quality</span>
-          <div class="quality-grid" id="qualityGrid"></div>
         </div>
         <div>
+          <div class="quality-row">
+            <span class="quality-label">Quality</span>
+            <select class="q-select" id="qualitySelect">
+              <option value="1080">1080p</option>
+              <option value="720" selected>720p</option>
+              <option value="480">480p</option>
+              <option value="360">360p</option>
+              <option value="audio">🎵 Audio only (MP3)</option>
+            </select>
+          </div>
           <div class="progress-wrap" id="progressWrap">
             <div class="progress-bar" id="progressBar"></div>
           </div>
@@ -356,9 +208,9 @@
     </div>
   </div>
 
-  <!-- Recent Downloads -->
+  <!-- Recent -->
   <section id="recentSection" style="display:none">
-    <h3 class="section-title" style="text-align:left;font-size:18px;color:var(--muted)">🕐 Recent Downloads</h3>
+    <h3 class="section-title" style="text-align:left;font-size:17px;color:var(--muted)">🕐 Recent</h3>
     <div class="recent-grid" id="recentGrid"></div>
   </section>
 
@@ -366,45 +218,22 @@
   <section id="platforms">
     <h3 class="section-title">Supported Platforms</h3>
     <div class="platforms-grid">
-      <div class="platform-card glass">
-        <div class="platform-icon">▶</div>
-        <div class="platform-name" style="color:#ff4444">YouTube</div>
-      </div>
-      <div class="platform-card glass">
-        <div class="platform-icon">📸</div>
-        <div class="platform-name" style="color:#e1306c">Instagram</div>
-      </div>
-      <div class="platform-card glass">
-        <div class="platform-icon">☁</div>
-        <div class="platform-name" style="color:#4a9eff">Terabox</div>
-      </div>
+      <div class="platform-card glass"><div class="platform-icon">▶</div><div class="platform-name" style="color:#ff4444">YouTube</div></div>
+      <div class="platform-card glass"><div class="platform-icon">📸</div><div class="platform-name" style="color:#e1306c">Instagram</div></div>
+      <div class="platform-card glass"><div class="platform-icon">🎵</div><div class="platform-name" style="color:#69c9d0">TikTok</div></div>
+      <div class="platform-card glass"><div class="platform-icon">🐦</div><div class="platform-name" style="color:#1da1f2">Twitter/X</div></div>
+      <div class="platform-card glass"><div class="platform-icon">🤖</div><div class="platform-name" style="color:#ff4500">Reddit</div></div>
     </div>
   </section>
 
   <!-- Features -->
-  <section id="features">
+  <section>
     <h3 class="section-title">Why VidSnap?</h3>
     <div class="features-grid">
-      <div class="feature-card glass">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-title">Fast Downloads</div>
-        <div class="feature-desc">Optimized servers for lightning speed.</div>
-      </div>
-      <div class="feature-card glass">
-        <div class="feature-icon">🎬</div>
-        <div class="feature-title">Multiple Qualities</div>
-        <div class="feature-desc">480p to 4K, plus audio only.</div>
-      </div>
-      <div class="feature-card glass">
-        <div class="feature-icon">🔒</div>
-        <div class="feature-title">Secure Processing</div>
-        <div class="feature-desc">Encrypted connections, no data stored.</div>
-      </div>
-      <div class="feature-card glass">
-        <div class="feature-icon">📱</div>
-        <div class="feature-title">Mobile Friendly</div>
-        <div class="feature-desc">Responsive design works on any device.</div>
-      </div>
+      <div class="feature-card glass"><div class="feature-icon">⚡</div><div class="feature-title">Real Downloads</div><div class="feature-desc">Powered by cobalt.tools — actual files, no redirects.</div></div>
+      <div class="feature-card glass"><div class="feature-icon">🎬</div><div class="feature-title">Multiple Qualities</div><div class="feature-desc">360p to 1080p, plus MP3 audio only.</div></div>
+      <div class="feature-card glass"><div class="feature-icon">🔒</div><div class="feature-title">No Storage</div><div class="feature-desc">We don't store URLs or video data.</div></div>
+      <div class="feature-card glass"><div class="feature-icon">📱</div><div class="feature-title">Mobile Ready</div><div class="feature-desc">Works perfectly on phone browsers.</div></div>
     </div>
   </section>
 
@@ -413,201 +242,294 @@
     <h3 class="section-title">FAQ</h3>
     <div class="faq-list">
       <div class="faq-item glass">
-        <button class="faq-q" onclick="toggleFaq(this)">Is VidSnap free to use? <span class="faq-arrow">▾</span></button>
-        <div class="faq-a">Yes, VidSnap is completely free for personal use.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Is VidSnap free? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, completely free.</div>
       </div>
       <div class="faq-item glass">
-        <button class="faq-q" onclick="toggleFaq(this)">Which platforms are supported? <span class="faq-arrow">▾</span></button>
-        <div class="faq-a">YouTube, Instagram Reels/Posts, and Terabox links are supported.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Which sites are supported? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">YouTube, Instagram, TikTok, Twitter/X, Reddit, and many more via cobalt.tools.</div>
       </div>
       <div class="faq-item glass">
-        <button class="faq-q" onclick="toggleFaq(this)">Is my data stored? <span class="faq-arrow">▾</span></button>
-        <div class="faq-a">No. We don't store any URLs, video data, or personal information.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Why does download open in a new tab? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Some browsers redirect instead of auto-downloading. Long press the link → "Save video" on mobile.</div>
       </div>
       <div class="faq-item glass">
-        <button class="faq-q" onclick="toggleFaq(this)">Can I download audio only? <span class="faq-arrow">▾</span></button>
-        <div class="faq-a">Yes! Select 'Audio Only (MP3)' from the quality options.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Can I get MP3 audio only? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes! Select "Audio only (MP3)" from the quality dropdown.</div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>© 2025 VidSnap. Built for speed. Download responsibly.</p>
-    <p>Not affiliated with YouTube, Instagram, or Terabox.</p>
+    <p>© 2025 VidSnap · Powered by cobalt.tools</p>
+    <p>Not affiliated with YouTube, Instagram, TikTok or any platform.</p>
   </footer>
 
 </div>
 
 <script>
-  let selectedQuality = '1080p';
-  let currentVideoData = null;
+// ─── cobalt.tools API ────────────────────────────────────────────────
+const COBALT_API = 'https://api.cobalt.tools';
 
-  const mockData = {
-    title: "Amazing Nature Documentary - 4K Ultra HD",
-    duration: "12:34",
-    thumbnail: "https://picsum.photos/seed/vidsnap/640/360",
-    fileSize: 245,
-    qualities: [
-      { label: "1080p", size: 245 },
-      { label: "720p",  size: 145 },
-      { label: "480p",  size: 80  },
-      { label: "360p",  size: 45  },
-    ]
-  };
+const PLATFORM_META = {
+  'youtube.com':  { name:'YouTube',   color:'#ff4444' },
+  'youtu.be':     { name:'YouTube',   color:'#ff4444' },
+  'instagram.com':{ name:'Instagram', color:'#e1306c' },
+  'tiktok.com':   { name:'TikTok',    color:'#69c9d0' },
+  'twitter.com':  { name:'Twitter/X', color:'#1da1f2' },
+  'x.com':        { name:'Twitter/X', color:'#1da1f2' },
+  'reddit.com':   { name:'Reddit',    color:'#ff4500' },
+  'vimeo.com':    { name:'Vimeo',     color:'#1ab7ea' },
+};
 
-  async function pasteUrl() {
-    try {
-      const text = await navigator.clipboard.readText();
-      document.getElementById('urlInput').value = text;
-    } catch {
-      alert('Clipboard access denied. Please paste manually (Ctrl+V / long press).');
-    }
+function getPlatformMeta(url) {
+  for (const [key, val] of Object.entries(PLATFORM_META)) {
+    if (url.includes(key)) return val;
   }
+  return { name:'Video', color:'#5078ff' };
+}
 
-  async function fetchVideo() {
-    const url = document.getElementById('urlInput').value.trim();
-    const errorBox = document.getElementById('errorBox');
-    const resultCard = document.getElementById('resultCard');
-    const fetchBtn = document.getElementById('fetchBtn');
+function getYTId(url) {
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
 
-    errorBox.style.display = 'none';
-    resultCard.style.display = 'none';
+// ─── State ───────────────────────────────────────────────────────────
+let currentDownloadUrl = null;
+let currentFilename    = 'video';
 
-    if (!url) return;
+// ─── Paste ───────────────────────────────────────────────────────────
+async function pasteUrl() {
+  try {
+    const t = await navigator.clipboard.readText();
+    document.getElementById('urlInput').value = t;
+  } catch {
+    alert('Clipboard access denied. Please paste manually.');
+  }
+}
 
-    const lower = url.toLowerCase();
-    const isYT = lower.includes('youtube') || lower.includes('youtu.be');
-    const isIG = lower.includes('instagram');
-    const isTB = lower.includes('terabox');
+// ─── Show/Hide helpers ───────────────────────────────────────────────
+function showError(msg) {
+  const el = document.getElementById('errorBox');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('infoBox').style.display = 'none';
+}
+function showInfo(msg) {
+  const el = document.getElementById('infoBox');
+  el.innerHTML = msg; el.style.display = 'block';
+  document.getElementById('errorBox').style.display = 'none';
+}
+function clearMsgs() {
+  document.getElementById('errorBox').style.display = 'none';
+  document.getElementById('infoBox').style.display  = 'none';
+}
 
-    if (!isYT && !isIG && !isTB) {
-      errorBox.textContent = '❌ Unsupported URL. Please enter a YouTube, Instagram, or Terabox link.';
-      errorBox.style.display = 'block';
+// ─── Fetch Video ─────────────────────────────────────────────────────
+async function fetchVideo() {
+  const rawUrl   = document.getElementById('urlInput').value.trim();
+  const fetchBtn = document.getElementById('fetchBtn');
+  const resultCard = document.getElementById('resultCard');
+
+  clearMsgs();
+  resultCard.style.display = 'none';
+  currentDownloadUrl = null;
+
+  if (!rawUrl) { showError('❌ Please enter a URL.'); return; }
+
+  // Basic URL check
+  let parsedUrl;
+  try { parsedUrl = new URL(rawUrl); } catch { showError('❌ Invalid URL.'); return; }
+
+  fetchBtn.disabled = true;
+  fetchBtn.innerHTML = '<span class="spinner"></span>Fetching...';
+
+  try {
+    const quality = document.getElementById('qualitySelect').value;
+    const isAudio = quality === 'audio';
+
+    const body = {
+      url: rawUrl,
+      videoQuality: isAudio ? '720' : quality,
+      audioFormat: 'mp3',
+      downloadMode: isAudio ? 'audio' : 'auto',
+      filenameStyle: 'pretty',
+    };
+
+    const res = await fetch(COBALT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || (data.status === 'error')) {
+      const errMsg = data?.error?.code || 'Unknown error from cobalt API';
+      showError(`❌ ${errMsg}`);
+      fetchBtn.disabled = false;
+      fetchBtn.innerHTML = '🔍 Fetch';
       return;
     }
 
-    fetchBtn.disabled = true;
-    fetchBtn.innerHTML = '<span class="spinner"></span> Fetching...';
+    // cobalt returns: status = "stream" | "redirect" | "tunnel" | "picker"
+    let downloadUrl = null;
+    if (data.status === 'stream' || data.status === 'tunnel' || data.status === 'redirect') {
+      downloadUrl = data.url;
+    } else if (data.status === 'picker') {
+      // Multiple items (e.g. carousel) — take first
+      downloadUrl = data.picker?.[0]?.url;
+    }
 
-    await new Promise(r => setTimeout(r, 1500));
+    if (!downloadUrl) {
+      showError('❌ Could not get download link. Try a different quality.');
+      fetchBtn.disabled = false;
+      fetchBtn.innerHTML = '🔍 Fetch';
+      return;
+    }
 
-    const platform = isIG ? 'instagram' : isTB ? 'terabox' : 'youtube';
-    const colors = { youtube: '#ff4444', instagram: '#e1306c', terabox: '#4a9eff' };
-    currentVideoData = { ...mockData, platform, url };
+    currentDownloadUrl = downloadUrl;
+    currentFilename = (data.filename || 'vidsnap_download');
 
-    // Populate card
-    document.getElementById('resultThumb').src = mockData.thumbnail;
-    document.getElementById('resultDuration').textContent = mockData.duration;
-    document.getElementById('resultTitle').textContent = mockData.title;
-    document.getElementById('resultMeta').textContent = `Platform: ${platform} • Size: ${mockData.fileSize} MB`;
+    // ─ Build result card ─
+    const meta = getPlatformMeta(rawUrl);
+    const ytId = getYTId(rawUrl);
+    const thumbUrl = ytId
+      ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+      : (data.thumbnail || '');
 
+    document.getElementById('resultThumb').src    = thumbUrl;
+    document.getElementById('resultThumb').style.display = thumbUrl ? 'block' : 'none';
+    document.getElementById('resultTitle').textContent   = data.filename?.replace(/\.[^.]+$/, '') || meta.name + ' Video';
+    document.getElementById('resultMeta').textContent    = `Platform: ${meta.name} · Quality: ${isAudio ? 'Audio MP3' : quality + 'p'}`;
+    document.getElementById('resultDuration').textContent = '';
     const badge = document.getElementById('platformBadge');
-    badge.textContent = platform;
-    badge.style.background = colors[platform];
+    badge.textContent  = meta.name;
+    badge.style.background = meta.color;
 
-    // Quality buttons
-    const grid = document.getElementById('qualityGrid');
-    grid.innerHTML = '';
-    mockData.qualities.forEach(q => {
-      const btn = document.createElement('button');
-      btn.className = 'q-btn' + (q.label === selectedQuality ? ' active' : '');
-      btn.textContent = `${q.label} (${q.size} MB)`;
-      btn.onclick = () => {
-        document.querySelectorAll('.q-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedQuality = q.label;
-        updateDlBtn();
-      };
-      grid.appendChild(btn);
-    });
+    // Reset download button
+    const dlBtn = document.getElementById('dlBtn');
+    dlBtn.className = 'dl-btn';
+    dlBtn.disabled  = false;
+    dlBtn.textContent = `⬇ Download ${isAudio ? 'MP3' : quality + 'p'}`;
 
-    const audioBtn = document.createElement('button');
-    audioBtn.className = 'q-btn audio' + (selectedQuality === 'audio' ? ' active' : '');
-    audioBtn.textContent = '🎵 MP3 Only';
-    audioBtn.onclick = () => {
-      document.querySelectorAll('.q-btn').forEach(b => b.classList.remove('active'));
-      audioBtn.classList.add('active');
-      selectedQuality = 'audio';
-      updateDlBtn();
-    };
-    grid.appendChild(audioBtn);
-
-    updateDlBtn();
     resultCard.style.display = 'block';
 
     // Save to recent
-    saveRecent({ title: mockData.title, url, timestamp: Date.now() });
+    saveRecent({ title: document.getElementById('resultTitle').textContent, url: rawUrl, ts: Date.now() });
 
-    fetchBtn.disabled = false;
-    fetchBtn.innerHTML = '🔍 Fetch';
+    clearMsgs();
+
+  } catch (err) {
+    showError('❌ Network error. Check your connection and try again.\n' + err.message);
   }
 
-  function updateDlBtn() {
-    const label = selectedQuality === 'audio' ? 'MP3 Audio' : selectedQuality;
-    document.getElementById('dlBtn').textContent = `⬇ Download ${label}`;
-  }
+  fetchBtn.disabled = false;
+  fetchBtn.innerHTML = '🔍 Fetch';
+}
 
-  async function startDownload() {
-    const dlBtn = document.getElementById('dlBtn');
-    const progressWrap = document.getElementById('progressWrap');
-    const progressBar = document.getElementById('progressBar');
+// ─── Download ────────────────────────────────────────────────────────
+async function startDownload() {
+  if (!currentDownloadUrl) return;
 
-    dlBtn.disabled = true;
-    progressWrap.style.display = 'block';
+  const dlBtn       = document.getElementById('dlBtn');
+  const progressWrap = document.getElementById('progressWrap');
+  const progressBar  = document.getElementById('progressBar');
 
-    for (let i = 0; i <= 100; i += 4) {
-      progressBar.style.width = i + '%';
-      dlBtn.textContent = `⏳ Downloading... ${i}%`;
-      await new Promise(r => setTimeout(r, 55));
-    }
+  dlBtn.disabled = true;
+  dlBtn.innerHTML = '<span class="spinner"></span>Starting...';
 
+  // Animate progress bar (visual only — fetch happens in background)
+  progressWrap.style.display = 'block';
+  let p = 0;
+  const ticker = setInterval(() => {
+    p = Math.min(p + Math.random() * 8, 85);
+    progressBar.style.width = p + '%';
+  }, 150);
+
+  try {
+    // Fetch the file as blob so it downloads directly
+    const res = await fetch(currentDownloadUrl);
+
+    if (!res.ok) throw new Error('Server returned ' + res.status);
+
+    const blob = await res.blob();
+
+    clearInterval(ticker);
+    progressBar.style.width = '100%';
+
+    // Trigger browser download
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = currentFilename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+
+    dlBtn.className = 'dl-btn success';
+    dlBtn.textContent = '✅ Downloaded!';
+    setTimeout(() => {
+      progressWrap.style.display = 'none';
+      progressBar.style.width = '0%';
+      dlBtn.className = 'dl-btn';
+      dlBtn.disabled = false;
+      dlBtn.textContent = '⬇ Download again';
+    }, 3000);
+
+  } catch (err) {
+    clearInterval(ticker);
     progressWrap.style.display = 'none';
     progressBar.style.width = '0%';
     dlBtn.disabled = false;
-    updateDlBtn();
+    dlBtn.textContent = '⬇ Download';
 
-    alert(`✅ Download complete! (${selectedQuality})\n\nNote: This is a frontend demo. For real downloads, connect a backend API (yt-dlp / Node.js).`);
+    // Fallback: open in new tab
+    showInfo(`⚠️ Direct download blocked by browser. <a href="${currentDownloadUrl}" target="_blank" style="color:#88aaff;text-decoration:underline">Click here to open video</a> → long press → Save.`);
   }
+}
 
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    item.classList.toggle('open');
-  }
-
-  function saveRecent(item) {
-    try {
-      const stored = localStorage.getItem('vsRecent');
-      const list = stored ? JSON.parse(stored) : [];
-      const updated = [item, ...list.filter(x => x.url !== item.url)].slice(0, 6);
-      localStorage.setItem('vsRecent', JSON.stringify(updated));
-      renderRecent(updated);
-    } catch {}
-  }
-
-  function renderRecent(list) {
-    const section = document.getElementById('recentSection');
-    const grid = document.getElementById('recentGrid');
-    if (!list || list.length === 0) { section.style.display = 'none'; return; }
-    section.style.display = 'block';
-    grid.innerHTML = list.map(item => `
-      <div class="recent-card glass">
-        <div class="recent-title">${item.title}</div>
-        <div class="recent-time">${new Date(item.timestamp).toLocaleString()}</div>
-      </div>
-    `).join('');
-  }
-
-  // Load recent on start
+// ─── Recent ──────────────────────────────────────────────────────────
+function saveRecent(item) {
   try {
-    const stored = localStorage.getItem('vsRecent');
-    if (stored) renderRecent(JSON.parse(stored));
+    const stored = localStorage.getItem('vsRecent3');
+    const list = stored ? JSON.parse(stored) : [];
+    const updated = [item, ...list.filter(x => x.url !== item.url)].slice(0, 6);
+    localStorage.setItem('vsRecent3', JSON.stringify(updated));
+    renderRecent(updated);
   } catch {}
+}
 
-  // Enter key support
-  document.getElementById('urlInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') fetchVideo();
-  });
+function renderRecent(list) {
+  const section = document.getElementById('recentSection');
+  const grid    = document.getElementById('recentGrid');
+  if (!list?.length) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  grid.innerHTML = list.map(item => `
+    <div class="recent-card glass" onclick="document.getElementById('urlInput').value='${item.url.replace(/'/g,"&#39;")}';fetchVideo()">
+      <div class="recent-title">${item.title}</div>
+      <div class="recent-time">${new Date(item.ts).toLocaleString()}</div>
+    </div>
+  `).join('');
+}
+
+// ─── FAQ ─────────────────────────────────────────────────────────────
+function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+
+// ─── Init ─────────────────────────────────────────────────────────────
+try {
+  const s = localStorage.getItem('vsRecent3');
+  if (s) renderRecent(JSON.parse(s));
+} catch {}
+
+document.getElementById('urlInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') fetchVideo();
+});
+
+// Re-fetch on quality change
+document.getElementById('qualitySelect').addEventListener('change', () => {
+  if (document.getElementById('resultCard').style.display !== 'none') fetchVideo();
+});
 </script>
 </body>
 </html>
