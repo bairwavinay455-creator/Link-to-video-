@@ -338,65 +338,52 @@
     .eic{font-size:2.4rem;margin-bottom:10px;opacity:.3;}
 
     /* ── Platforms ───────────────────────────────────────────── */
-    .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:11px;}
-    .pc{display:flex;flex-direction:column;align-items:center;gap:7px;padding:18px 10px;background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:var(--r);transition:var(--tr);text-align:center;}
-    .pc:hover{background:rgba(255,255,255,.06);border-color:hsla(var(--ah),var(--as),60%,.25);transform:translateY(-4px);box-shadow:0 8px 28px hsla(var(--ah),var(--as),50%,.12);}
-    .pic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;}
-    .pnm{font-size:.8rem;font-weight:700;color:var(--t2);}
-    .pmx{font-size:.66rem;color:var(--t3);}
-    .pst{font-size:.66rem;padding:2px 8px;border-radius:20px;font-weight:700;background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.22);}
+    .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .pc{background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:var(--r);padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;transition:var(--tr);}
+    .pc:hover{border-color:hsla(var(--ah),var(--as),60%,.25);background:hsla(var(--ah),var(--as),50%,.05);}
+    .pic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;}
+    .pnm{font-size:.83rem;font-weight:700;}
+    .pmx{font-size:.7rem;color:var(--t3);}
+    .pst{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ok);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);padding:3px 9px;border-radius:20px;}
 
     /* ── FAQ ─────────────────────────────────────────────────── */
-    .fl{display:flex;flex-direction:column;gap:9px;}
+    .fl{display:flex;flex-direction:column;gap:8px;}
     .fi{border:1px solid var(--gb);border-radius:var(--r);overflow:hidden;transition:var(--tr);}
-    .fi:hover{border-color:hsla(var(--ah),var(--as),60%,.22);}
-    .fq{display:flex;align-items:center;justify-content:space-between;gap:11px;padding:15px 18px;cursor:pointer;background:rgba(255,255,255,.02);font-size:.9rem;font-weight:700;user-select:none;transition:var(--tr);}
-    .fq:hover{background:rgba(255,255,255,.04);}
-    .fa2{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s ease;}
-    .fi.op .fa2{transform:rotate(180deg);background:hsla(var(--ah),var(--as),50%,.15);}
-    .fi.op .fq{background:hsla(var(--ah),var(--as),50%,.05);}
-    .fa{max-height:0;overflow:hidden;transition:max-height .36s ease;}
-    .fai{padding:0 18px 14px;font-size:.86rem;color:var(--t2);line-height:1.75;}
+    .fi.op{border-color:hsla(var(--ah),var(--as),60%,.25);}
+    .fq{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;font-size:.88rem;font-weight:600;gap:12px;user-select:none;}
+    .fq:hover{background:rgba(255,255,255,.03);}
+    .fa2{width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s ease;}
+    .fi.op .fa2{transform:rotate(180deg);background:hsla(var(--ah),var(--as),50%,.12);}
+    .fa{max-height:0;overflow:hidden;transition:max-height .3s ease;}
     .fi.op .fa{max-height:300px;}
-
-    /* ── Scroll reveal ───────────────────────────────────────── */
-    .rv{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease;}
-    .rv.in{opacity:1;transform:translateY(0);}
-
-    /* ── Toast ───────────────────────────────────────────────── */
-    .toast{position:fixed;bottom:26px;right:26px;z-index:1000;background:rgba(5,10,24,.97);border:1px solid hsla(var(--ah),var(--as),60%,.25);backdrop-filter:blur(24px);padding:12px 18px;border-radius:var(--r);font-size:.85rem;color:var(--t1);display:flex;align-items:center;gap:8px;transform:translateY(80px);opacity:0;transition:var(--tr);box-shadow:0 8px 32px rgba(0,0,0,.6);}
-    .toast.on{transform:translateY(0);opacity:1;}
-    .tdot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);flex-shrink:0;}
+    .fai{padding:0 18px 14px;font-size:.84rem;color:var(--t2);line-height:1.65;}
 
     /* ── Footer ──────────────────────────────────────────────── */
-    footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:46px 36px 28px;margin-top:50px;}
-    .fg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:38px;max-width:900px;margin:0 auto 36px;}
-    .fbp{font-size:.83rem;color:var(--t3);line-height:1.75;max-width:220px;margin-top:10px;}
-    .fc h4{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);margin-bottom:12px;}
-    .fc ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
-    .fc a{font-size:.84rem;color:var(--t3);text-decoration:none;transition:color .2s;}
+    footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:48px 36px 28px;background:rgba(3,7,18,.6);backdrop-filter:blur(20px);}
+    .fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;max-width:960px;margin:0 auto 36px;}
+    .fbp{font-size:.82rem;color:var(--t3);line-height:1.7;margin-top:12px;max-width:280px;}
+    .fc h4{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);margin-bottom:14px;}
+    .fc ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .fc a{font-size:.83rem;color:var(--t3);text-decoration:none;transition:var(--tr);}
     .fc a:hover{color:var(--t1);}
-    .fb{display:flex;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid var(--gb);max-width:900px;margin:0 auto;flex-wrap:wrap;gap:10px;}
+    .fb{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid var(--gb);flex-wrap:wrap;gap:10px;}
     .fcp{font-size:.78rem;color:var(--t3);}
-    .fds{font-size:.72rem;color:var(--t3);opacity:.6;text-align:right;}
-    .cr{text-align:center;margin-top:18px;font-size:.78rem;color:var(--t3);}
-    .cr span{background:linear-gradient(90deg,var(--ac),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;}
+    .fds{font-size:.72rem;color:var(--t3);opacity:.6;}
+    .cr{text-align:center;margin-top:20px;font-size:.72rem;color:var(--t3);letter-spacing:.08em;}
+    .cr span{color:var(--ac);font-weight:800;}
+
+    /* ── Toast ───────────────────────────────────────────────── */
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(15,23,42,.92);border:1px solid var(--gb);border-radius:99px;padding:10px 22px;font-size:.84rem;font-weight:600;display:flex;align-items:center;gap:8px;opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;z-index:1000;white-space:nowrap;backdrop-filter:blur(20px);}
+    .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+    .tdot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);}
 
     /* ── Responsive ──────────────────────────────────────────── */
-    @media(max-width:720px){
-      header{padding:12px 16px;}
-      .clr-wrap span{display:none;}
-      .stats{grid-template-columns:repeat(2,1fr);}
+    @media(max-width:700px){
+      header{padding:14px 18px;}
       .rin{grid-template-columns:1fr;}
-      .tw{width:100%;max-width:none;}
-      .fg{grid-template-columns:1fr 1fr;}
-      .fb-brand{grid-column:1/-1;}
-      .fb{flex-direction:column;text-align:center;}
-      .fds{text-align:center;}
-      .card{padding:18px;}
-      .irow{flex-direction:column;}
-      footer{padding:36px 16px 24px;}
-      .vinay-banner{padding:20px 14px;}
+      .fg{grid-template-columns:1fr;gap:24px;}
+      .fb{flex-direction:column;align-items:flex-start;}
+      footer{padding:36px 18px 24px;}
     }
     @media(max-width:440px){
       .hero{padding:40px 0 28px;}
@@ -439,7 +426,7 @@
   <div style="margin-top:10px;">
     <span class="vinay-badge">
       <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      v2.0 · Supports 1GB · 10+ Platforms
+      v3.0 · Supports 1GB · 10+ Platforms
     </span>
   </div>
 </div>
@@ -662,16 +649,14 @@
 <script>
 "use strict";
 /* ══════════════════════════════════════════════════════════════
-   LinkToVideo v2.0 — by VINAY
-   Real API backend · Video player · Instagram profile support
+   LinkToVideo v3.0 — by VINAY
+   100% client-side · No backend required · Cloudflare ready
+   Uses Cobalt API (cobalt.tools) for video extraction
 ══════════════════════════════════════════════════════════════ */
 
-/* ── API base — auto-detects local dev vs deployed ─────── */
-const API = (() => {
-  const h = location.hostname;
-  if (h === "localhost" || h === "127.0.0.1") return "http://localhost:80/api";
-  return "/api"; // works on Replit (proxied) and any deployment
-})();
+/* ── External services (no backend needed) ──────────────── */
+const COBALT_API  = "https://api.cobalt.tools/";
+const NOEMBED_API = "https://noembed.com/embed";
 
 const RKEY = "ltv2_rec", MAX_REC = 8;
 
@@ -682,47 +667,47 @@ const S = { info: null, quality: "1080p", streamUrl: null, embedUrl: null };
 const $ = id => document.getElementById(id);
 const $$ = sel => [...document.querySelectorAll(sel)];
 const D = {
-  loader:      $("loader"),
-  urlIn:       $("url-in"),
-  pasteBtn:    $("paste-btn"),
-  fetchBtn:    $("fetch-btn"),
-  fetchIco:    $("fetch-ico"),
-  fetchTx:     $("fetch-tx"),
-  emsg:        $("emsg"),
-  etx:         $("etx"),
-  result:      $("result"),
-  playerWrap:  $("player-wrap"),
-  playerInner: $("player-inner"),
-  playerClose: $("player-close"),
-  thumbCol:    $("thumb-col"),
-  vBadge:      $("v-badge"),
-  vTitle:      $("v-title"),
-  vAuthor:     $("v-author"),
-  vDur:        $("v-dur"),
-  vNotice:     $("v-notice"),
-  qg:          $("qg"),
-  pw:          $("pw"),
-  pf:          $("pf"),
-  plbl:        $("plbl"),
-  ppct:        $("ppct"),
-  dacts:       $("dacts"),
-  playBtn:     $("play-btn"),
-  dlBtn:       $("dl-btn"),
-  copyBtn:     $("copy-btn"),
-  igUI:        $("ig-profile-ui"),
+  loader:        $("loader"),
+  urlIn:         $("url-in"),
+  pasteBtn:      $("paste-btn"),
+  fetchBtn:      $("fetch-btn"),
+  fetchIco:      $("fetch-ico"),
+  fetchTx:       $("fetch-tx"),
+  emsg:          $("emsg"),
+  etx:           $("etx"),
+  result:        $("result"),
+  playerWrap:    $("player-wrap"),
+  playerInner:   $("player-inner"),
+  playerClose:   $("player-close"),
+  thumbCol:      $("thumb-col"),
+  vBadge:        $("v-badge"),
+  vTitle:        $("v-title"),
+  vAuthor:       $("v-author"),
+  vDur:          $("v-dur"),
+  vNotice:       $("v-notice"),
+  qg:            $("qg"),
+  pw:            $("pw"),
+  pf:            $("pf"),
+  plbl:          $("plbl"),
+  ppct:          $("ppct"),
+  dacts:         $("dacts"),
+  playBtn:       $("play-btn"),
+  dlBtn:         $("dl-btn"),
+  copyBtn:       $("copy-btn"),
+  igUI:          $("ig-profile-ui"),
   videoResultUI: $("video-result-ui"),
-  af:          $("af"),
-  rl:          $("rl"),
-  clearBtn:    $("clear-btn"),
-  fl:          $("fl"),
-  toast:       $("toast"),
-  ttx:         $("ttx"),
-  cpick:       $("cpick"),
+  af:            $("af"),
+  rl:            $("rl"),
+  clearBtn:      $("clear-btn"),
+  fl:            $("fl"),
+  toast:         $("toast"),
+  ttx:           $("ttx"),
+  cpick:         $("cpick"),
 };
 
-const esc = s => String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m]);
-const delay = ms => new Promise(r => setTimeout(r, ms));
-const rnd = a => a[Math.floor(Math.random() * a.length)];
+const esc     = s => String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m]);
+const delay   = ms => new Promise(r => setTimeout(r, ms));
+const rnd     = a => a[Math.floor(Math.random() * a.length)];
 const fmtDate = ts => new Date(ts).toLocaleDateString(undefined, { month:"short", day:"numeric", year:"numeric" });
 
 /* ── Toast ──────────────────────────────────────────────── */
@@ -749,25 +734,312 @@ const pc  = n => PC[n]  || "bvm";
 function isURL(s) { try { const u=new URL(s); return u.protocol==="http:"||u.protocol==="https:"; } catch { return false; } }
 
 /* ════════════════════════════════════════════════════════════
-   API CALLS
+   PLATFORM DETECTION
+════════════════════════════════════════════════════════════ */
+
+function detectPlatform(url) {
+  try {
+    const h = new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+    if (h === "youtu.be" || h.includes("youtube.com"))       return "youtube";
+    if (h.includes("instagram.com"))                          return "instagram";
+    if (h.includes("tiktok.com"))                             return "tiktok";
+    if (h === "x.com" || h.includes("twitter.com"))          return "twitter";
+    if (h.includes("vimeo.com"))                              return "vimeo";
+    if (h.includes("soundcloud.com"))                         return "soundcloud";
+    if (h.includes("drive.google.com"))                       return "gdrive";
+    if (h.includes("dropbox.com"))                            return "dropbox";
+    if (h.includes("1drv.ms") || h.includes("onedrive.live.com") || h.includes("sharepoint.com")) return "onedrive";
+    if (h.includes("terabox") || h.includes("4funbox") || h.includes("momerybox") ||
+        h.includes("tibibox") || h.includes("teraboxapp") || h.includes("1024tera")) return "terabox";
+    return "other";
+  } catch { return "other"; }
+}
+
+function getYtId(url) {
+  try {
+    const u = new URL(url);
+    if (u.hostname === "youtu.be") return u.pathname.slice(1).split("?")[0];
+    if (u.pathname.includes("/shorts/")) return u.pathname.split("/shorts/")[1].split("?")[0];
+    if (u.pathname.includes("/live/")) return u.pathname.split("/live/")[1].split("?")[0];
+    return u.searchParams.get("v") || null;
+  } catch { return null; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   COBALT API — free public video extraction service
+════════════════════════════════════════════════════════════ */
+
+async function callCobalt(url, quality, audioOnly) {
+  const q = (quality === "audio") ? "144" : quality.replace("p", "");
+  const body = {
+    url,
+    videoQuality: q,
+    audioFormat: "mp3",
+    downloadMode: audioOnly ? "audio" : "auto",
+    filenameStyle: "pretty",
+  };
+
+  let resp;
+  try {
+    resp = await fetch(COBALT_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } catch (e) {
+    throw new Error("Could not reach download service. Check your internet connection.");
+  }
+
+  let data;
+  try {
+    data = await resp.json();
+  } catch {
+    throw new Error("Download service returned an unexpected response. Please try again.");
+  }
+
+  if (data.status === "error") {
+    const code = data?.error?.code || "";
+    const msg = code
+      ? code.replace(/^error\./i, "").replace(/-/g, " ")
+      : "Download service error. The content may be private or geo-restricted.";
+    throw new Error(msg.charAt(0).toUpperCase() + msg.slice(1) + ".");
+  }
+
+  if (!resp.ok) {
+    throw new Error(`Service error (${resp.status}). Please try again.`);
+  }
+
+  return data;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CLOUD STORAGE URL HELPERS (no API needed)
+════════════════════════════════════════════════════════════ */
+
+function getGDriveInfo(url) {
+  const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (!m) throw new Error("Could not extract Google Drive file ID. Make sure the link is a shareable file link.");
+  const fileId = m[1];
+  return {
+    fileId,
+    directUrl: `https://drive.google.com/uc?export=download&id=${fileId}`,
+    thumb: `https://drive.google.com/thumbnail?id=${fileId}&sz=w320`,
+  };
+}
+
+function getDropboxDirectUrl(url) {
+  let u = url.trim();
+  u = u.replace(/[?&]dl=\d/g, "");
+  u = u + (u.includes("?") ? "&dl=1" : "?dl=1");
+  u = u.replace("www.dropbox.com", "dl.dropboxusercontent.com");
+  return u;
+}
+
+function getOneDriveDirectUrl(url) {
+  if (url.includes("1drv.ms")) return url;
+  return url.replace(/(\?.*)?$/, "?download=1");
+}
+
+/* ════════════════════════════════════════════════════════════
+   GET VIDEO INFO
 ════════════════════════════════════════════════════════════ */
 
 async function apiGetInfo(url) {
-  const r = await fetch(`${API}/video-info?url=${encodeURIComponent(url)}`);
-  const d = await r.json();
-  if (!r.ok) throw new Error(d.error || "Failed to fetch video info.");
-  return d;
+  const platform = detectPlatform(url);
+
+  /* ── Instagram — detect profile vs post ── */
+  if (platform === "instagram") {
+    try {
+      const u   = new URL(url);
+      const pts = u.pathname.replace(/\/$/, "").split("/").filter(Boolean);
+      const postTypes = ["p", "reel", "tv", "stories"];
+      if (pts.length === 1 && !postTypes.includes(pts[0])) {
+        return { isProfile: true, platform: "instagram", handle: pts[0], canDownload: false, canPreview: false };
+      }
+    } catch { /* continue */ }
+  }
+
+  /* ── Google Drive ── */
+  if (platform === "gdrive") {
+    const { directUrl, thumb } = getGDriveInfo(url);
+    return {
+      title: "Google Drive File",
+      platform: "gdrive",
+      author: "Google Drive",
+      duration: "—",
+      thumb,
+      canDownload: true,
+      canPreview: false,
+      directUrl,
+      notice: "Large Google Drive files may show a virus-scan warning page — click 'Download anyway' to proceed.",
+    };
+  }
+
+  /* ── Dropbox ── */
+  if (platform === "dropbox") {
+    return {
+      title: "Dropbox File",
+      platform: "dropbox",
+      author: "Dropbox",
+      duration: "—",
+      thumb: null,
+      canDownload: true,
+      canPreview: false,
+      directUrl: getDropboxDirectUrl(url),
+    };
+  }
+
+  /* ── OneDrive ── */
+  if (platform === "onedrive") {
+    return {
+      title: "OneDrive File",
+      platform: "onedrive",
+      author: "OneDrive",
+      duration: "—",
+      thumb: null,
+      canDownload: true,
+      canPreview: false,
+      directUrl: getOneDriveDirectUrl(url),
+    };
+  }
+
+  /* ── YouTube — metadata via noembed, embed for preview ── */
+  if (platform === "youtube") {
+    const ytId = getYtId(url);
+    const info = {
+      platform: "youtube",
+      canDownload: true,
+      canPreview: !!ytId,
+      title: "YouTube Video",
+      author: "",
+      duration: "—",
+    };
+    if (ytId) {
+      info.thumb    = `https://img.youtube.com/vi/${ytId}/mqdefault.jpg`;
+      info.thumbFb  = `https://img.youtube.com/vi/${ytId}/default.jpg`;
+      info.embedUrl = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+    }
+    try {
+      const r = await fetch(`${NOEMBED_API}?url=${encodeURIComponent(url)}`);
+      const d = await r.json();
+      if (d.title)       info.title  = d.title;
+      if (d.author_name) info.author = d.author_name;
+    } catch { /* noembed is optional enrichment */ }
+    return info;
+  }
+
+  /* ── Vimeo — metadata via noembed, embed for preview ── */
+  if (platform === "vimeo") {
+    const info = { platform: "vimeo", canDownload: true, canPreview: false, title: "Vimeo Video", author: "", duration: "—" };
+    try {
+      const r = await fetch(`${NOEMBED_API}?url=${encodeURIComponent(url)}`);
+      const d = await r.json();
+      if (d.title)         info.title  = d.title;
+      if (d.author_name)   info.author = d.author_name;
+      if (d.thumbnail_url) info.thumb  = d.thumbnail_url;
+      const m = url.match(/vimeo\.com\/(\d+)/);
+      if (m) { info.embedUrl = `https://player.vimeo.com/video/${m[1]}?autoplay=1`; info.canPreview = true; }
+    } catch { /* noembed optional */ }
+    return info;
+  }
+
+  /* ── Terabox ── */
+  if (platform === "terabox") {
+    return {
+      platform: "terabox",
+      title: "Terabox File",
+      author: "Terabox",
+      duration: "—",
+      thumb: null,
+      canDownload: true,
+      canPreview: false,
+      notice: "Click Download to fetch this Terabox file. Public/shared links work best; private files may require login on Terabox.",
+    };
+  }
+
+  /* ── All other platforms (Instagram, TikTok, Twitter, SoundCloud…) via Cobalt ── */
+  const cobalt = await callCobalt(url, "1080", false);
+
+  const info = {
+    platform,
+    title:  `${PL[platform] || "Video"} Download`,
+    author: "",
+    thumb:  null,
+    canDownload: true,
+    canPreview:  false,
+  };
+
+  if (cobalt.status === "stream" || cobalt.status === "redirect" || cobalt.status === "tunnel") {
+    info.preloadedUrl    = cobalt.url;
+    info.preloadedFname  = cobalt.filename;
+    info.canPreview      = (platform !== "soundcloud");
+  } else if (cobalt.status === "picker") {
+    info.picker = cobalt.picker;
+    if (cobalt.picker?.[0]?.url && cobalt.picker[0].type === "photo") {
+      info.thumb = cobalt.picker[0].url;
+    }
+  }
+
+  return info;
 }
 
+/* ════════════════════════════════════════════════════════════
+   DOWNLOAD
+════════════════════════════════════════════════════════════ */
+
 async function apiDownload(url, quality) {
-  const r = await fetch(`${API}/download`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url, quality, audioOnly: quality === "audio" }),
-  });
-  const d = await r.json();
-  if (!r.ok) throw new Error(d.error || "Download request failed.");
-  return d; // { status, url, picker, error }
+  const platform = detectPlatform(url);
+  const audioOnly = quality === "audio";
+
+  /* Cloud storage — direct URL conversion, no API needed */
+  if (platform === "gdrive") {
+    const { directUrl } = getGDriveInfo(url);
+    return { status: "redirect", url: directUrl };
+  }
+  if (platform === "dropbox") {
+    return { status: "redirect", url: getDropboxDirectUrl(url) };
+  }
+  if (platform === "onedrive") {
+    return { status: "redirect", url: getOneDriveDirectUrl(url) };
+  }
+
+  /* If info already preloaded a picker */
+  if (S.info?.picker) {
+    return { status: "picker", picker: S.info.picker };
+  }
+
+  /* If info already has a direct URL */
+  if (S.info?.directUrl) {
+    return { status: "redirect", url: S.info.directUrl };
+  }
+
+  /* If info already fetched the stream (non-YT/Vimeo cobalt platforms at 1080p) */
+  if (S.info?.preloadedUrl && quality === "1080p") {
+    return { status: "stream", url: S.info.preloadedUrl, filename: S.info.preloadedFname };
+  }
+
+  /* Terabox — try known public proxy workers, fall back to direct open */
+  if (platform === "terabox") {
+    const proxies = [
+      `https://terabox.udaymanthena.workers.dev/?url=${encodeURIComponent(url)}`,
+      `https://teraboxdownloader.online/api?url=${encodeURIComponent(url)}`,
+    ];
+    for (const proxy of proxies) {
+      try {
+        const r = await fetch(proxy, { headers: { Accept: "application/json" } });
+        if (r.ok) {
+          const d = await r.json();
+          const dlUrl = d.url || d.downloadLink || d.download_url || d.link;
+          if (dlUrl) return { status: "redirect", url: dlUrl };
+        }
+      } catch { /* try next proxy */ }
+    }
+    /* All proxies failed — open Terabox directly */
+    return { status: "redirect", url: url };
+  }
+
+  /* YouTube, Vimeo, Instagram, TikTok, Twitter, SoundCloud → Cobalt */
+  return await callCobalt(url, quality, audioOnly);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -794,12 +1066,10 @@ function renderThumb(info) {
 function renderResult(info) {
   S.info = info;
   S.streamUrl = null;
-  S.embedUrl = info.embedUrl || null;
+  S.embedUrl  = info.embedUrl || null;
 
-  /* Hide player */
   closePlayer();
 
-  /* Toggle profile vs normal */
   if (info.isProfile) {
     D.videoResultUI.style.display = "none";
     D.igUI.style.display = "block";
@@ -810,7 +1080,6 @@ function renderResult(info) {
 
     D.thumbCol.innerHTML = renderThumb(info);
 
-    /* Thumb click → play */
     const tbp = document.getElementById("thumb-play-btn");
     if (tbp && info.canPreview) {
       const go = () => handlePlay();
@@ -818,18 +1087,16 @@ function renderResult(info) {
       tbp.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" ") go(); });
     }
 
-    D.vBadge.textContent = pl(info.platform);
-    D.vBadge.className   = "pbadge " + pc(info.platform);
-    D.vTitle.textContent = info.title || "—";
+    D.vBadge.textContent  = pl(info.platform);
+    D.vBadge.className    = "pbadge " + pc(info.platform);
+    D.vTitle.textContent  = info.title || "—";
     D.vAuthor.textContent = info.author ? `by ${info.author}` : "—";
-    D.vDur.textContent   = info.duration || "—";
+    D.vDur.textContent    = info.duration || "—";
 
-    /* Notice */
     D.vNotice.innerHTML = info.notice && typeof info.notice === "string"
       ? `<div class="notice ni" style="margin-top:8px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>${esc(info.notice)}</span></div>`
       : "";
 
-    /* Show/hide play button */
     D.playBtn.style.display = info.canPreview ? "" : "none";
     D.dlBtn.disabled = !info.canDownload;
   }
@@ -850,7 +1117,7 @@ function renderIGProfile(info) {
     </div>
     <div class="notice nw" style="margin-bottom:14px">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span><strong>Instagram Profile URLs</strong> — Instagram blocks direct profile scraping. To download, paste individual post or Reel URLs (e.g. <em>instagram.com/reel/ABC123</em>) into the main search bar above. Stories require an active login session and cannot be downloaded here.</span>
+      <span><strong>Instagram Profile URLs</strong> — Instagram blocks direct profile scraping. To download, paste individual post or Reel URLs (e.g. <em>instagram.com/reel/ABC123</em>) into the main search bar above.</span>
     </div>
     <div class="notice ns">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -879,19 +1146,16 @@ function handlePlay() {
   const info = S.info;
   if (!info) return;
 
-  /* YouTube → embed iframe */
   if (info.platform === "youtube" && info.embedUrl) {
     openPlayer(`<iframe src="${esc(info.embedUrl)}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${esc(info.title)}"></iframe>`);
     return;
   }
 
-  /* Vimeo → embed iframe */
   if (info.platform === "vimeo" && info.embedUrl) {
     openPlayer(`<iframe src="${esc(info.embedUrl)}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="${esc(info.title)}"></iframe>`);
     return;
   }
 
-  /* Other platforms with a stream URL → HTML5 video */
   if (S.streamUrl) {
     openPlayer(`
       <video controls autoplay style="width:100%;height:100%;background:#000">
@@ -901,7 +1165,6 @@ function handlePlay() {
     return;
   }
 
-  /* No stream yet — fetch it first then play */
   handleDownloadAndPlay();
 }
 
@@ -917,7 +1180,7 @@ async function animateProgress(phases) {
     await new Promise(res => {
       const iv = setInterval(() => {
         pct = Math.min(pct + Math.random() * 8 + 3, target);
-        D.pf.style.width = pct + "%";
+        D.pf.style.width  = pct + "%";
         D.ppct.textContent = Math.round(pct) + "%";
         if (pct >= target) { clearInterval(iv); res(); }
       }, 120);
@@ -932,20 +1195,20 @@ async function handleDownloadAndPlay() {
     return;
   }
 
-  D.dlBtn.disabled = true;
+  D.dlBtn.disabled  = true;
   D.playBtn.disabled = true;
-  D.pf.style.width = "0%";
+  D.pf.style.width  = "0%";
 
   try {
     await animateProgress([
-      ["Connecting…", 20],
+      ["Connecting…",      20],
       ["Fetching stream…", 55],
-      ["Processing…", 85],
+      ["Processing…",      85],
     ]);
 
     const resp = await apiDownload(info.url || D.urlIn.value.trim(), S.quality);
 
-    D.pf.style.width = "100%";
+    D.pf.style.width   = "100%";
     D.ppct.textContent = "100%";
     D.plbl.textContent = "Ready!";
     await delay(350);
@@ -955,13 +1218,11 @@ async function handleDownloadAndPlay() {
       throw new Error(resp.error?.context?.service || resp.error || "Download service returned an error.");
     }
 
-    /* Get the actual URL */
     let dlUrl = null;
 
-    if (resp.status === "stream" || resp.status === "redirect") {
+    if (resp.status === "stream" || resp.status === "redirect" || resp.status === "tunnel") {
       dlUrl = resp.url;
     } else if (resp.status === "picker" && resp.picker?.length > 0) {
-      /* Show picker for Instagram multi-media, etc. */
       showPicker(resp.picker);
       return;
     } else if (resp.url) {
@@ -972,12 +1233,11 @@ async function handleDownloadAndPlay() {
 
     S.streamUrl = dlUrl;
 
-    /* Determine if video or audio */
     const isAudio = S.quality === "audio";
     const ext     = isAudio ? "mp3" : "mp4";
-    const fname   = (info.title || "video").replace(/[^a-z0-9 ]/gi, "_").slice(0, 60) + "." + ext;
+    const fname   = resp.filename
+      || ((info.title || "video").replace(/[^a-z0-9 ]/gi, "_").slice(0, 60) + "." + ext);
 
-    /* ── Trigger real browser download ── */
     const a = document.createElement("a");
     a.href     = dlUrl;
     a.download = fname;
@@ -989,12 +1249,9 @@ async function handleDownloadAndPlay() {
 
     toast(`✓ Download started — ${fname}`);
 
-    /* Also update play button to play from stream URL */
     D.playBtn.style.display = "";
-    D.playBtn.textContent = "";
     D.playBtn.innerHTML = `<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play Downloaded`;
 
-    /* Save to recent */
     addRecent({
       platform: info.platform,
       title:    info.title || "Video",
@@ -1009,12 +1266,12 @@ async function handleDownloadAndPlay() {
     D.pw.classList.remove("on");
     showErr(e.message || "Download failed. Please try again.");
   } finally {
-    D.dlBtn.disabled  = false;
+    D.dlBtn.disabled   = false;
     D.playBtn.disabled = false;
   }
 }
 
-/* ── Picker (Instagram multi-image, etc.) ───────────────── */
+/* ── Picker (Instagram multi-image / multi-video) ───────── */
 function showPicker(items) {
   const html = items.map((it, i) => `
     <a href="${esc(it.url)}" target="_blank" rel="noopener" download
@@ -1047,7 +1304,7 @@ function setLoading(on) {
 async function handleFetch() {
   const url = D.urlIn.value.trim();
   clearErr();
-  if (!url)     { showErr("Please paste a video URL first."); D.urlIn.focus(); return; }
+  if (!url)      { showErr("Please paste a video URL first."); D.urlIn.focus(); return; }
   if (!isURL(url)) { showErr("Not a valid URL — must start with https://"); D.urlIn.classList.add("err"); return; }
 
   setLoading(true);
@@ -1089,8 +1346,8 @@ function initQuality() {
     b.addEventListener("click", () => {
       $$(".qb").forEach(x => { x.classList.remove("on"); x.setAttribute("aria-checked","false"); });
       b.classList.add("on"); b.setAttribute("aria-checked","true");
-      S.quality = b.dataset.q;
-      S.streamUrl = null; // reset stream on quality change
+      S.quality   = b.dataset.q;
+      S.streamUrl = null;
     });
   });
 }
@@ -1139,11 +1396,11 @@ function renderRecent() {
 ════════════════════════════════════════════════════════════ */
 
 const FAQS = [
-  { q:"How does the download work directly on this website?", a:"LinkToVideo uses a backend server that fetches the real video stream URL from each platform. When you click Download, the actual video file is sent straight to your browser — no redirects to other websites." },
-  { q:"Can I preview the video before downloading?", a:"Yes! For YouTube and Vimeo, the video player loads right on this page before you download. For other platforms, clicking Download fetches the stream and starts playback immediately." },
+  { q:"How does the download work directly on this website?", a:"LinkToVideo uses the Cobalt API — a free, open-source video extraction service — to fetch the real video stream URL from each platform. Your browser then downloads the video file directly. No third-party redirect sites involved." },
+  { q:"Can I preview the video before downloading?", a:"Yes! For YouTube and Vimeo, the video player loads right on this page before you download. For Instagram, TikTok, Twitter and other platforms, clicking Download fetches the stream and starts the file download immediately." },
   { q:"How do I download Instagram posts and Reels?", a:"Paste the URL of an individual post (instagram.com/p/...) or Reel (instagram.com/reel/...) — not a profile page. The downloader fetches the actual video and starts the download directly." },
-  { q:"What about Instagram profile downloads?", a:"Instagram actively blocks profile scraping. When you paste a profile URL, the tool guides you to copy individual post/Reel URLs from that profile instead. Stories require an active session and cannot be downloaded." },
-  { q:"Does it support Terabox files up to 1GB?", a:"Yes. Paste any Terabox share link and click Fetch — the download starts directly here without opening any other website. Files up to 1GB are fully supported." },
+  { q:"What about Instagram profile downloads?", a:"Instagram actively blocks profile scraping. When you paste a profile URL, the tool guides you to copy individual post/Reel URLs from that profile instead." },
+  { q:"Does it support Google Drive and Dropbox?", a:"Yes. For Google Drive, paste the shareable file link (drive.google.com/file/d/...). For Dropbox, paste any shared link. Both are converted to direct download URLs automatically — no API calls needed." },
   { q:"Which qualities are available?", a:"360p, 480p, 720p HD, 1080p HD, and Audio-Only (MP3). The actual quality available depends on what the original uploader provided on their platform." },
   { q:"Is my data private?", a:"Yes. No video URLs or personal data are stored on any server. Your recent downloads are saved only in your own browser's localStorage — nothing is shared or uploaded." },
 ];
@@ -1280,16 +1537,16 @@ function initCanvas() {
    EVENT WIRING
 ════════════════════════════════════════════════════════════ */
 
-D.fetchBtn.addEventListener("click", handleFetch);
-D.urlIn.addEventListener("keydown", e => { if (e.key==="Enter") handleFetch(); });
-D.urlIn.addEventListener("input",   () => { if (D.urlIn.classList.contains("err")) clearErr(); });
-D.pasteBtn.addEventListener("click", handlePaste);
-D.dlBtn.addEventListener("click",   handleDownloadAndPlay);
-D.playBtn.addEventListener("click", handlePlay);
-D.copyBtn.addEventListener("click", handleCopy);
-D.clearBtn.addEventListener("click",() => { localStorage.removeItem(RKEY); renderRecent(); toast("Cleared."); });
-D.urlIn.addEventListener("dragover", e => e.preventDefault());
-D.urlIn.addEventListener("drop",     e => { e.preventDefault(); const t=e.dataTransfer.getData("text"); if(t){D.urlIn.value=t;clearErr();} });
+D.fetchBtn.addEventListener("click",  handleFetch);
+D.urlIn.addEventListener("keydown",   e => { if (e.key==="Enter") handleFetch(); });
+D.urlIn.addEventListener("input",     () => { if (D.urlIn.classList.contains("err")) clearErr(); });
+D.pasteBtn.addEventListener("click",  handlePaste);
+D.dlBtn.addEventListener("click",     handleDownloadAndPlay);
+D.playBtn.addEventListener("click",   handlePlay);
+D.copyBtn.addEventListener("click",   handleCopy);
+D.clearBtn.addEventListener("click",  () => { localStorage.removeItem(RKEY); renderRecent(); toast("Cleared."); });
+D.urlIn.addEventListener("dragover",  e => e.preventDefault());
+D.urlIn.addEventListener("drop",      e => { e.preventDefault(); const t=e.dataTransfer.getData("text"); if(t){D.urlIn.value=t;clearErr();} });
 
 /* ════════════════════════════════════════════════════════════
    BOOT
